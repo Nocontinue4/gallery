@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <title>อัปโหลดภาพ</title>
+</head>
+<body>
+  <h1>อัปโหลดภาพ</h1>
+  <p><a href="{% url 'gallery:gallery' %}">กลับไปหน้าแกลเลอรี</a></p>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">อัปโหลด</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <title>ตารางแสดงข้อมูลภาพ</title>
+  <style>
+    body { font-family: sans-serif; padding:20px; background:#f7f7f7; }
+    table { width:100%; border-collapse: collapse; background:#fff; }
+    th, td { border:1px solid #ccc; padding:10px; text-align:left; vertical-align: top; }
+    th { background:#eee; }
+    img { max-width:150px; height:auto; }
+  </style>
+</head>
+<body>
+  <h1>📋 ตารางแสดงข้อมูลภาพ</h1>
+  <p><a href="{% url 'gallery:gallery' %}">กลับไปหน้าแกลเลอรี</a></p>
+  <table>
+    <tr>
+      <th>ชื่อภาพ</th>
+      <th>รูปภาพ</th>
+      <th>รายละเอียดภาพ</th>
+    </tr>
+    {% for img in images %}
+    <tr>
+      <td>{{ img.image_name }}</td>
+      <td><img src="{{ img.image_file.url }}" alt="{{ img.image_name }}"></td>
+      <td>{{ img.description }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">ยังไม่มีข้อมูลภาพ</td></tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

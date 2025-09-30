@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <title>แกลเลอรีภาพ</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background:#f7f7f7; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap:20px; }
+    .card { background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,.1); }
+    .card img { width:100%; height:200px; object-fit:cover; display:block; }
+    .card .body { padding:10px; }
+  </style>
+</head>
+<body>
+  <h1>🎨 แกลเลอรีภาพ</h1>
+  <p><a href="{% url 'gallery:upload_image' %}">อัปโหลดภาพใหม่</a> | <a href="/admin/">Admin</a></p>
+
+  <div class="gallery">
+    {% for img in images %}
+      <div class="card">
+        <img src="{{ img.image_file.url }}" alt="{{ img.image_name }}">
+        <div class="body">
+          <h3>{{ img.image_name }}</h3>
+          <p>{{ img.description }}</p>
+        </div>
+      </div>
+    {% empty %}
+      <p>ยังไม่มีรูปนะ</p>
+    {% endfor %}
+  </div>
+</body>
+</html>
